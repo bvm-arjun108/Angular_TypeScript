@@ -1,0 +1,42 @@
+<!-- <h1> Welcome to {{ hotelLocation }} </h1> -->
+
+<hinv-header></hinv-header>
+
+
+<div [hidden] = "hideRooms">
+<div [ngStyle] = "{'color': rooms.totalRooms ? 'green' : 'red', 'display': 'inline-block'}">
+    Number of Total Rooms: <span [innerText]="rooms.totalRooms"></span>
+</div>
+</div>
+
+<!-- {{roomList | json}} -->
+
+<br>
+
+<div *ngIf="selectedRoom">
+    {{selectedRoom | prettyJson}}
+</div>
+
+<span [ngStyle] = "{'color': rooms.totalRooms ? 'blue' : 'red'}">Number of Available Rooms: {{ rooms.availableRooms ?? 'No Rooms Available' }}</span>
+<div *ngIf="hideRooms">
+    <br>
+   <hinv-rooms-list [rooms]="roomList"
+   [tableTitle]="tableTitle"
+   (selectedRoom)="selectRoom($event)"
+   ></hinv-rooms-list>
+  </div>
+  <br>
+
+<div>
+<button (click)="addRoom()">Add Room</button>
+</div>
+<br>
+
+<hinv-header></hinv-header>
+
+<button (click) = "toggle()">Toggle</button>
+
+<hinv-header></hinv-header>
+
+
+ 
